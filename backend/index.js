@@ -4,7 +4,12 @@ const bodyParser = require("body-parser");
 const cron = require("node-cron");
 const axios = require("axios");
 const cors = require("cors");
-const { v4: uuidv4 } = require("uuid");
+let uuidv4;
+
+(async () => {
+  const uuid = await import("uuid");
+  uuidv4 = uuid.v4;
+})();
 
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
 const PORT = process.env.PORT || 4000;
